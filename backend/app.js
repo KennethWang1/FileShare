@@ -37,10 +37,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, 'uploads/');
+      cb(null, './files/');
   },
   filename: (req, file, cb) => {
-      cb(null, Date.now() + '-' + file.originalname);
+      const sanitizedFileName = file.originalname.replace(/[^a-zA-Z0-9.-]/g, '_');
+      files.append(sanitizedFileName);
+      cb(null, sanitizedFileName);
   }
 });
 const upload = multer({ storage: storage });
