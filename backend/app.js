@@ -53,7 +53,9 @@ app.post('/api/v1/upload', upload.single('file'), (req, res) => {
 );
 
 app.get('/api/v1/fetch', (req, res) => {
-    console.log(req.body);
+    let randomIndex = Math.floor(Math.random() * files.length);
+    let randomFile = files[randomIndex];
+    res.download(`./files/${randomFile}`);
 }
 );
 
