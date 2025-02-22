@@ -3,7 +3,17 @@ const http = require("http");
 const fs = require("fs");
 const cors = require('cors');
 const bodyParser = require("body-parser");
+const multer = require('multer');
 const app = express();
+
+const directoryPath = './files/';
+let files = [];
+
+try {
+  files = fs.readdirSync(directoryPath);
+} catch (error) {
+  console.error('Error reading directory:', error);
+}
 
 require('events').EventEmitter.defaultMaxListeners = 15;
 
@@ -23,10 +33,29 @@ app.use(cors({
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/api/v1/upload', (req, res) => {
-        console.log(req.body);
-    }
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+      cb(null, Date.now() + '-' + file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
+
+app.post('/api/v1/upload', upload.single('file'), (req, res) => {
+    console.log(req.body);
+}
 );
+
+app.get('/api/v1/fetch', (req, res) => {
+    console.log(req.body);
+}
+);
+
+
 
 http.createServer(app).listen(port, () => {
     console.log(`HTTP server up and running on port ${port}`);
