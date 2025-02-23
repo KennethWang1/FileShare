@@ -7,6 +7,8 @@ import {
     AccordionTrigger,
   } from "@/components/ui/accordion"
 
+import Image from 'next/image'
+
 export default function Home() {
     return (
         <>
@@ -40,7 +42,7 @@ export default function Home() {
                             <AccordionItem value="item-2">
                                 <AccordionTrigger className="text-xl">How secure is this?</AccordionTrigger>
                                 <AccordionContent className="text-xl">
-                                    As secure as probably Fort Knox... if Fort Knox was just a box secured by a Masterock. 
+                                    As secure as probably Fort Knox... if Fort Knox was just a box secured by a Masterlock. 
                                 </AccordionContent>
                             </AccordionItem>
                             <AccordionItem value="item-3">
@@ -51,8 +53,14 @@ export default function Home() {
                             </AccordionItem>
                         </Accordion>
                     </div>
-                    <div className="w-2/5 flex justify-center items-center">
-                        <p className="h-min">Some picture here ig</p>
+                    <div className="w-2/5 flex justify-center">
+                        <Image
+                            src="/firefox.png"
+                            width={200}
+                            height={200}
+                            alt="Logo"
+                            className="h-min relative top-16"
+                        ></Image>
                     </div>
                 </div>
             </div>
