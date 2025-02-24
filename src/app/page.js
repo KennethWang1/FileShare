@@ -8,13 +8,14 @@ import {
   } from "@/components/ui/accordion"
 
 import Image from 'next/image'
+import { FileTransfers } from "./charts/file_transfers";
 
 export default function Home() {
     return (
         <>
             <Nav></Nav>
 
-            <div className="w-full h-screen flex justify-center items-center">
+            <div id="home" className="w-full h-screen flex justify-center items-center">
                 <div>
                     <p className="monomakh text-center text-6xl">File Share</p>
                     <p className="shafarik text-center text-lg">The anonymous russian roulette style file sharing platform</p>
@@ -62,6 +63,18 @@ export default function Home() {
                             className="h-min relative top-16"
                         ></Image>
                     </div>
+                </div>
+            </div>
+
+            <div id="stats" className="w-full">
+                <p className="monomakh ml-[8rem] text-4xl pt-[7rem]">Statistics</p>
+                <p className="shafarik ml-[8rem] text-lg">Some statistics since launch</p>
+                <div id="charts" className="mt-6 mx-[8rem] grid grid-rows-4 grid-cols-4 gap-2">
+                    <FileTransfers className=""></FileTransfers>
+                    <FileTransfers className="col-span-3"></FileTransfers>
+                    <FileTransfers className="col-span-1"></FileTransfers>
+                    <FileTransfers className="col-span-2"></FileTransfers>
+                    <FileTransfers className="col-span-1"></FileTransfers>
                 </div>
             </div>
         </>
