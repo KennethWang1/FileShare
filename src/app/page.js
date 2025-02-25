@@ -9,6 +9,8 @@ import {
 
 import Image from 'next/image'
 import { FileTransfers } from "./charts/file_transfers";
+import { FileTransfersOverTime } from "./charts/file_transfers_over_time";
+import { UniqueVisitors } from "./charts/unique_visitors"
 
 export default function Home() {
     return (
@@ -71,8 +73,8 @@ export default function Home() {
                 <p className="shafarik ml-[8rem] text-lg">Some statistics since launch</p>
                 <div id="charts" className="mt-6 mx-[8rem] grid grid-rows-4 grid-cols-4 gap-2">
                     <FileTransfers className=""></FileTransfers>
-                    <FileTransfers className="col-span-3"></FileTransfers>
-                    <FileTransfers className="col-span-1"></FileTransfers>
+                    <FileTransfersOverTime className="col-span-2 "></FileTransfersOverTime>
+                    <UniqueVisitors className="col-span-1"></UniqueVisitors>
                     <FileTransfers className="col-span-2"></FileTransfers>
                     <FileTransfers className="col-span-1"></FileTransfers>
                 </div>
