@@ -1,4 +1,3 @@
-import Nav from "./nav";
 import { Button } from "@/components/ui/button";
 import {
     Accordion,
@@ -15,7 +14,14 @@ import { UniqueVisitors } from "./charts/unique_visitors"
 export default function Home() {
     return (
         <>
-            <Nav></Nav>
+            <div className="fixed py-8 w-full flex items-center bg-inherit z-50">
+                <div className="mx-auto flex items-center text-lg w-1/4 justify-around">
+                    <a href="#home" className="border border-transparent hover:border-b-white">Home</a>
+                    <a href="#about" className="border border-transparent hover:border-b-white">About</a>
+                    <a href="#stats" className="border border-transparent hover:border-b-white">Stats</a>
+                    <a href="/transfer" className="border border-transparent hover:border-b-white">Transfer</a>
+                </div>
+            </div>
 
             <div id="home" className="w-full h-screen flex justify-center items-center">
                 <div>
@@ -68,16 +74,20 @@ export default function Home() {
                 </div>
             </div>
 
-            <div id="stats" className="w-full">
+            <div id="stats" className="w-full h-screen">
                 <p className="monomakh ml-[8rem] text-4xl pt-[7rem]">Statistics</p>
                 <p className="shafarik ml-[8rem] text-lg">Some statistics since launch</p>
-                <div id="charts" className="mt-6 mx-[8rem] grid grid-rows-4 grid-cols-4 gap-2">
+                <div id="charts" className="mt-6 mx-[8rem] grid grid-rows-1 grid-cols-4 gap-2">
                     <FileTransfers className=""></FileTransfers>
                     <FileTransfersOverTime className="col-span-2 "></FileTransfersOverTime>
-                    <UniqueVisitors className="col-span-1"></UniqueVisitors>
-                    <FileTransfers className="col-span-2"></FileTransfers>
-                    <FileTransfers className="col-span-1"></FileTransfers>
+                    <UniqueVisitors className="col-span-1"></UniqueVisitors>    
+                    {/* There's not enough budget for more statistics ngl */}
                 </div>
+            </div>
+
+            <div id="footer" className="flex items-center justify-between w-full h-10 bg-[#161a21] text-[#6f6f6f]">
+                <p className="ml-10">Do not contact us please</p>
+                <p className="mr-10">© File Share 2025 (Who's even copying this???)</p>
             </div>
         </>
     );
