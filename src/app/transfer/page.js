@@ -15,6 +15,8 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 
+import { Checkbox } from "@/components/ui/checkbox";
+
 export default function Home() {
     return (
         <>
@@ -28,40 +30,45 @@ export default function Home() {
             </div>
 
             <div className="h-screen w-full flex items-center justify-center">
-                <Tabs defaultValue="account" className="w-[400px]">
+                <Tabs defaultValue="upload" className="w-1/2">
                     <TabsList className="grid w-full grid-cols-2">
-                        <TabsTrigger value="account">Account</TabsTrigger>
-                        <TabsTrigger value="password">Password</TabsTrigger>
+                        <TabsTrigger value="upload">Upload</TabsTrigger>
+                        <TabsTrigger value="download">Download</TabsTrigger>
                     </TabsList>
-                    <TabsContent value="account">
+                    <TabsContent value="upload">
                         <Card>
                         <CardHeader>
-                            <CardTitle>Account</CardTitle>
-                            <CardDescription>
-                                Make changes to your account here. Click save when you're done.
+                        <CardTitle className="text-2xl text-center">Upload</CardTitle>
+                            <CardDescription className="text-center">
+                                Upload a file for others to randomly get (Make sure you don't upload sensitive data as you will <strong>NOT</strong> be able to remove afterwards. We don't have the budget for that to happen)
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-2">
                             
                         </CardContent>
-                        <CardFooter>
-                            <Button>Sign up</Button>
+                        <CardFooter className="block">
+                            <div className="flex items-center w-4/5 m-auto">
+                                <Checkbox className="mr-10"></Checkbox>
+                                <p className="text-sm text-muted-foreground">I have not uploaded a virus or personal information I do not wish to share. The company will not be liable for any damages done afterwards.</p>
+                            </div>
+                            
+                            <Button className="mx-auto block mt-4">Upload</Button>
                         </CardFooter>
                         </Card>
                     </TabsContent>
-                    <TabsContent value="password">
+                    <TabsContent value="download">
                         <Card>
                         <CardHeader>
-                            <CardTitle>Password</CardTitle>
-                            <CardDescription>
-                                Change your password here. After saving, you'll be logged out.
+                            <CardTitle className="text-2xl text-center">Download</CardTitle>
+                            <CardDescription className="text-center">
+                                Download a file! Randomly receive a file from the other users of the website, ranging anything from someone's dog to a random stock image!
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-2">
-
+                            <p id="fileName" className="text-center">Baguette noises</p>
                         </CardContent>
-                        <CardFooter>
-                            <Button>Save password</Button>
+                        <CardFooter className="flex justify-center">
+                            <Button>Download</Button>
                         </CardFooter>
                         </Card>
                     </TabsContent>
