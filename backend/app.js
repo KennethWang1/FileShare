@@ -4,7 +4,6 @@ const fs = require("fs");
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const multer = require('multer');
-const raw = require('body-parser/lib/types/raw');
 const app = express();
 
 const directoryPath = './files/';
@@ -28,7 +27,7 @@ try {
 
 require('events').EventEmitter.defaultMaxListeners = 15;
 
-const port = process.env.PORT;
+const port = 3000;
 
 app.use((req, res, next) => {
     console.log('Incoming request: ' + req.url);
@@ -118,7 +117,7 @@ http.createServer(app).listen(port, () => {
 });
 
 // Save data every 10 minutes
-await setInterval(() => {
+setInterval(() => {
   fs.writeFileSync('data.json', JSON.stringify({downloads, uploads}));
 }, 600000);
 
