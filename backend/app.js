@@ -9,7 +9,7 @@ const app = express();
 const directoryPath = './files/';
 let files = [];
 let downloads = 0;
-let uplaods = 0;
+let uploads = 0;
 
 try {
   files = fs.readdirSync(directoryPath);
@@ -64,7 +64,7 @@ const upload = multer({ storage: storage });
  */
 app.post('/api/v1/upload', upload.single('file'), (req, res) => {
     res.send('success');
-    uplaods++;
+    uploads++;
 }
 );
 
@@ -103,7 +103,7 @@ app.get('/api/v1/fetchDownloads', (req, res) => {
  * @apiDescription Fetches the number of uploads during this session.
  */
 app.get('/api/v1/fetchUploads', (req, res) => {
-  res.send(uplaods.toString());
+  res.send(uploads.toString());
 }
 );
 
