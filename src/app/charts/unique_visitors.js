@@ -21,7 +21,7 @@ const chartData = [
   { month: "March", visitors: 895 },
   { month: "April", visitors: 1526 },
   { month: "May", visitors: 2365 },
-  { month: "June", visitors: 2563 },
+  { month: "June", visitors: 2869 },
 ]
 
 const chartConfig = {
@@ -59,7 +59,7 @@ export function UniqueVisitors() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          Trending up by x% this month <TrendingUp className="h-4 w-4" />
+          Trending up  <TrendingUp className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground">
           Showing monthly unique visitors since launch 

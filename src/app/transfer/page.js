@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -17,7 +19,41 @@ import {
 
 import { Checkbox } from "@/components/ui/checkbox";
 
+import { useState } from "react"
+import { Download } from "lucide-react";
+
 export default function Home() {
+
+    const generateRandomString = (length) => {
+        let result = '';
+        const characters =
+          'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        for (let i = 0; i < length; i++) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    };
+
+    const [ fileName, setFileName ] = useState("Click Get File Button")
+
+    let count = 0 
+
+    const getFile = () => {
+        let interval = setInterval(() => {
+            if (count == 25) clearInterval(interval)
+
+            setFileName(generateRandomString(10));
+
+            count++;
+        }, 10)
+
+        let classes = ["border", "border-transparent", "hover:border-b-white", "cursor-pointer"]
+        for (let cls of classes) {
+            document.getElementById("download").classList.add(cls)
+        }
+    }
+
     return (
         <>
             <div className="fixed py-8 w-full flex items-center bg-inherit z-50">
@@ -36,7 +72,7 @@ export default function Home() {
                         <TabsTrigger value="download">Download</TabsTrigger>
                     </TabsList>
                     <TabsContent value="upload">
-                        <Card>
+                        <Card className="h-[400px]">
                         <CardHeader>
                         <CardTitle className="text-2xl text-center">Upload</CardTitle>
                             <CardDescription className="text-center">
@@ -57,7 +93,7 @@ export default function Home() {
                         </Card>
                     </TabsContent>
                     <TabsContent value="download">
-                        <Card>
+                        <Card className="h-[400px]">
                         <CardHeader>
                             <CardTitle className="text-2xl text-center">Download</CardTitle>
                             <CardDescription className="text-center">
@@ -65,10 +101,14 @@ export default function Home() {
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-2">
-                            <p id="fileName" className="text-center">Baguette noises</p>
+                            <p className="text-center text-lg">File:</p>
+                            <div id="download" className="w-max m-auto flex justify-center">
+                                <p id="fileName" className="text-center text-lg mr-2">{fileName}</p>
+                                <Download></Download>
+                            </div>
                         </CardContent>
                         <CardFooter className="flex justify-center">
-                            <Button>Download</Button>
+                            <Button onClick={() => getFile()}>Get File</Button>
                         </CardFooter>
                         </Card>
                     </TabsContent>
@@ -77,7 +117,7 @@ export default function Home() {
 
             <div id="footer" className="fixed bottom-0 flex items-center justify-between w-full h-10 bg-[#161a21] text-[#6f6f6f]">
                 <p className="ml-10">Do not contact us please</p>
-                <p className="mr-10">© File Share 2025 (Who's even copying this???)</p>
+                <p className="mr-10">© File Share 2025 (Who's even copying this??? Also we don't even have a copyright on this)</p>
             </div>
             
         </>

@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button";
 import {
     Accordion,
@@ -28,7 +30,7 @@ export default function Home() {
                     <p className="monomakh text-center text-6xl">File Share</p>
                     <p className="shafarik text-center text-lg">The anonymous russian roulette style file sharing platform</p>
                     <div className="mt-4 w-full flex justify-center items-center">
-                        <Button>Try Now</Button>
+                        <Button onClick={() => {window.location.href = "/transfer"}}>Try Now</Button>
                     </div>
                 </div>
             </div>
@@ -76,7 +78,7 @@ export default function Home() {
 
             <div id="stats" className="w-full h-screen">
                 <p className="monomakh ml-[8rem] text-4xl pt-[7rem]">Statistics</p>
-                <p className="shafarik ml-[8rem] text-lg">Some statistics since launch</p>
+                <p className="shafarik ml-[8rem] text-lg">Some statistics since launch (Fudged numbers? I don't know what you're talking about)</p>
                 <div id="charts" className="mt-6 mx-[8rem] grid grid-rows-1 grid-cols-4 gap-2">
                     <FileTransfers className=""></FileTransfers>
                     <FileTransfersOverTime className="col-span-2 "></FileTransfersOverTime>
@@ -85,9 +87,9 @@ export default function Home() {
                 </div>
             </div>
 
-            <div id="footer" className="flex items-center justify-between w-full h-10 bg-[#161a21] text-[#6f6f6f]">
+            <div id="footer" className="fixed bottom-0 flex items-center justify-between w-full h-10 bg-[#161a21] text-[#6f6f6f]">
                 <p className="ml-10">Do not contact us please</p>
-                <p className="mr-10">© File Share 2025 (Who's even copying this???)</p>
+                <p className="mr-10">© File Share 2025 (Who's even copying this??? Also we don't even have a copyright on this)</p>
             </div>
         </>
     );
