@@ -108,6 +108,11 @@ app.get('/api/v1/fetchUploads', (req, res) => {
 }
 );
 
+app.get('/api/v1/allFileNames', (req, res) => {
+  res.send(files.toString());
+}
+);
+
 http.createServer(app).listen(port, () => {
     console.log(`HTTP server up and running on port ${port}`);
 });
