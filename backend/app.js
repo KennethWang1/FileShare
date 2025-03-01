@@ -27,7 +27,7 @@ try {
 
 require('events').EventEmitter.defaultMaxListeners = 15;
 
-const port = 3000;
+const port = 3001;
 
 app.use((req, res, next) => {
     console.log('Incoming request: ' + req.url);
@@ -38,6 +38,7 @@ app.use(cors({
     origin: ['http://localhost:3000', 'https://localhost:3001'],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
+    exposedHeaders: ['Content-Disposition'],
     credentials: true
   }));
 app.use(express.json());
@@ -108,7 +109,7 @@ app.get('/api/v1/fetchUploads', (req, res) => {
 );
 
 app.get('/api/v1/allFileNames', (req, res) => {
-  res.send(files.toString());
+  res.send(JSON.stringify({"files": files}));
 }
 );
 
