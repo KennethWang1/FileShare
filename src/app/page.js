@@ -14,6 +14,7 @@ import { FileTransfersOverTime } from "./charts/file_transfers_over_time";
 import { UniqueVisitors } from "./charts/unique_visitors"
 
 export default function Home() {
+
     return (
         <>
             <div className="fixed py-8 w-full flex items-center bg-inherit z-50">

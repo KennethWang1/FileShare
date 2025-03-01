@@ -21,29 +21,51 @@ import {
     ChartLegendContent
 } from "@/components/ui/chart"
 
-const chartData = [
-    { transfer_type: "downloads", transfers: 64523, fill: "var(--color-downloads)" },
-    { transfer_type: "uploads", transfers: 35326, fill: "var(--color-uploads)" },
-]
-
-const chartConfig = {
-    transfers: {
-        label: "Transfers",
-    },
-    downloads: {
-        label: "Downloads",
-        color: "hsl(var(--chart-1))",
-    },
-    uploads: {
-        label: "Uploads",
-        color: "hsl(var(--chart-2))",
-    },
-}
+import { useEffect } from "react"
+import { useState } from "react";
 
 export function FileTransfers({className}) {
-    const totalTransfers = React.useMemo(() => {
-        return chartData.reduce((acc, curr) => acc + curr.transfers, 0)
+
+    const [ uploads, setUploads ] = useState()
+    const [ downloads, setDownloads ] = useState()
+
+    const chartData = React.useMemo(() => [
+        { transfer_type: "downloads", transfers: downloads, fill: "var(--color-downloads)", dataKey: "downloads" },
+        { transfer_type: "uploads", transfers: uploads, fill: "var(--color-uploads)", dataKey: "uploads" },
+    ], [uploads, downloads]);
+    
+    const chartConfig = {
+        transfers: {
+            label: "Transfers",
+        },
+        downloads: {
+            label: "Downloads",
+            color: "hsl(var(--chart-1))",
+        },
+        uploads: {
+            label: "Uploads",
+            color: "hsl(var(--chart-2))",
+        },
+    }
+    
+    const [totalTransfers, setTotalTransfers] = useState()
+
+    useEffect(() => {
+        let x = 0
+        fetch("http://localhost:3001/api/v1/fetchUploads")
+        .then(r => r.text())
+        .then(n => {setUploads(parseInt(n)); x = parseInt(n)})
+        
+        fetch("http://localhost:3001/api/v1/fetchDownloads")
+        .then(r => r.text())
+        .then(n => {
+            setDownloads(parseInt(n))
+            setTotalTransfers(parseInt(n) + x)
+            console.log(uploads, downloads, parseInt(n) + x)
+        })
+        
     }, [])
+
 
     return (
         <Card className={`flex flex-col ${className}`}>
